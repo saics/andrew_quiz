@@ -301,8 +301,6 @@
    * ------------------------------------------------------------------ */
   const defaults = () => ({
     handLength: 18.5,
-    handWidthOn: false,
-    handWidth: 9.0,
     shape: null,
     sideButtons: null,
     extras: [],
@@ -371,12 +369,7 @@
     const a = A();
     const L = a.handLength * 10;
     const r = { palm: [0.6, 0.66], "relaxed-claw": [0.58, 0.65], claw: [0.57, 0.63], "fingertip-claw": [0.54, 0.6], fingertip: [0.52, 0.58] }[a.grip] || [0.56, 0.64];
-    let s = `Dužina miša cca ${Math.round(L * r[0])}–${Math.round(L * r[1])} mm`;
-    if (a.handWidthOn) {
-      const W = a.handWidth * 10;
-      s += `, širina cca ${Math.round(W * 0.6)}–${Math.round(W * 0.7)} mm`;
-    }
-    return s + " (gruba procjena – provjeri na shapefinder.cc)";
+    return `Dužina miša cca ${Math.round(L * r[0])}–${Math.round(L * r[1])} mm (gruba procjena – provjeri na shapefinder.cc)`;
   }
 
   /* Redci za pregled + slanje: [naslov, vrijednost, stepId] */
@@ -385,7 +378,6 @@
     const or = (x, fb = "—") => x || fb;
     return [
       ["Dužina šake", `${a.handLength.toFixed(1)} cm (${handCat(a.handLength)})`, "hand"],
-      ["Širina šake", a.handWidthOn ? `${a.handWidth.toFixed(1)} cm` : "nije izmjerio", "hand"],
       ["Oblik", or(labelOf("shape")), "shape"],
       ["Bočni gumbi", or(labelOf("sideButtons")), "buttons"],
       ["Dodatni gumbi / featuri", or(labelOf("extras")), "buttons"],
@@ -561,16 +553,7 @@
               <button class="btn small ghost" data-nudge="hl" data-d="0.1">+ 0.1</button>
             </div>
           </div>
-          <div class="group">
-            <label class="check"><input type="checkbox" id="hwOn" ${a.handWidthOn ? "checked" : ""}> Izmjerio sam i širinu <span class="opt">(neobavezno)</span></label>
-            <div id="hwBox" class="${a.handWidthOn ? "" : "disabled"}">
-              <div class="muted small">Preko zglobova prstiju (najširi dio dlana), bez palca.</div>
-              <div class="bigval"><span id="hwVal">${a.handWidth.toFixed(1)}</span> cm</div>
-              <input type="range" id="hw" min="6" max="12" step="0.1" value="${a.handWidth}" ${a.handWidthOn ? "" : "disabled"} aria-label="Širina šake u cm">
-              <div class="range-labels"><span>6 cm</span><span>12 cm</span></div>
-            </div>
-          </div>
-          <div class="tip">💡 Nemaš metar? Uzmi ravnalo, ili A4 papir: dug je <b>29.7 cm</b>, a širok <b>21 cm</b>. Bankovna kartica je široka <b>8.6 cm</b>.</div>
+          <div class="tip">💡 Nemaš metar? Uzmi ravnalo, ili A4 papir (dug je <b>29.7 cm</b>), ili bankovnu karticu (duga je <b>8.6 cm</b>).</div>
         </div>
       </div>`;
   }
@@ -643,24 +626,15 @@
 
     // šaka
     if (st.type === "hand") {
-      const hl = app.querySelector("#hl"), hw = app.querySelector("#hw"), hwOn = app.querySelector("#hwOn");
+      const hl = app.querySelector("#hl");
       const upd = () => {
         const a = A();
         app.querySelector("#hlVal").textContent = a.handLength.toFixed(1);
         app.querySelector("#hlCat").textContent = handCat(a.handLength);
-        app.querySelector("#hwVal").textContent = a.handWidth.toFixed(1);
         hl.value = a.handLength;
-        hw.value = a.handWidth;
         save();
       };
       hl.oninput = () => { A().handLength = Math.round(parseFloat(hl.value) * 10) / 10; upd(); };
-      hw.oninput = () => { A().handWidth = Math.round(parseFloat(hw.value) * 10) / 10; upd(); };
-      hwOn.onchange = () => {
-        A().handWidthOn = hwOn.checked;
-        hw.disabled = !hwOn.checked;
-        app.querySelector("#hwBox").classList.toggle("disabled", !hwOn.checked);
-        save();
-      };
       app.querySelectorAll("[data-nudge]").forEach((b) => {
         b.onclick = () => {
           const a = A();

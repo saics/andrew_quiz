@@ -139,10 +139,6 @@ code { background: var(--card2); padding: 1px 6px; border-radius: 5px; }
 .bigval .cat { font-size: 15px; font-weight: 700; color: #111; background: var(--acc2); padding: 3px 10px; border-radius: 99px; vertical-align: middle; letter-spacing: 0; }
 .range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
 .fine { display: flex; gap: 8px; margin-top: 8px; }
-.check { display: flex; gap: 8px; align-items: center; font-weight: 700; cursor: pointer; }
-.check input { width: 20px; height: 20px; accent-color: var(--acc); }
-#hwBox { margin-top: 8px; transition: opacity .2s; }
-#hwBox.disabled { opacity: .35; }
 .tip { background: var(--card); border: 1px dashed var(--line); padding: 12px 14px; border-radius: 12px; font-size: 14px; color: var(--muted); }
 .tip b { color: var(--txt); }
 
