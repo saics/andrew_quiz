@@ -16,7 +16,7 @@
  *    pretplati se na njega u ntfy aplikaciji i upiši ga ovdje.
  */
 window.UPITNIK_CONFIG = {
-  web3formsAccessKey: "",
+  web3formsAccessKey: "084fd810-8f70-4f21-8238-12c959de0a7d",
   formEndpoint: "",
   ntfyTopic: "",
 };

@@ -178,11 +178,10 @@
     },
     {
       id: "extra",
-      title: "Još samo malo... 🙏",
-      sub: "Ovo je sve neobavezno, ali jako pomaže.",
+      title: "Još samo ovo... 🙏",
+      sub: "",
       groups: [
-        { key: "currentLikes", type: "textarea", optional: true, label: "Što ti se sviđa / ne sviđa kod miša kojeg sada koristiš?", placeholder: "npr. pretežak je, kabel mi smeta, volim oblik..." },
-        { key: "notes", type: "textarea", optional: true, label: "Još nešto što bi trebalo znati?", placeholder: "Bilo što 😄" },
+        { key: "currentLikes", type: "textarea", label: "Što ti se sviđa, a što ne sviđa kod miša kojeg sada koristiš?", placeholder: "npr. pretežak je, kabel mi smeta, volim oblik..." },
       ],
     },
   ];
@@ -200,7 +199,6 @@
     colors: [],
     rgb: null,
     currentLikes: "",
-    notes: "",
   });
 
   function load() {
@@ -215,6 +213,9 @@
   }
 
   let S = load() || { screen: "welcome", step: 0, answers: defaults(), attempts: 0, sentAt: null, fromReview: false };
+  // Stranica se uvijek otvara na "Bok Andrew" (ako je stao negdje, tamo ima gumb "Nastavi")
+  S.screen = "welcome";
+  S.fromReview = false;
   const A = () => S.answers;
   const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } };
 
@@ -243,7 +244,7 @@
     const v = A()[g.key];
     if (g.optional) return true;
     if (g.multi) return v.length > 0;
-    return v !== null && v !== "";
+    return v !== null && String(v).trim() !== "";
   }
   const stepValid = (st) => st.type === "hand" || (st.groups || []).every(isAnswered);
 
@@ -268,7 +269,6 @@
       ["Boja", or(labelOf("colors")), "color"],
       ["RGB", or(labelOf("rgb")), "color"],
       ["Trenutni miš – sviđa / ne sviđa", or(a.currentLikes.trim()), "extra"],
-      ["Napomene", or(a.notes.trim()), "extra"],
     ];
   }
 
@@ -404,9 +404,16 @@
              </button>`
       )
       .join("");
-    return `<div class="group" data-group="${g.key}">
+    return `<div class="group ${g.chips ? "group-chips" : "group-cards"}" data-group="${g.key}">
       ${g.label ? `<div class="glabel">${g.label}${opt}</div>` : ""}
-      <div class="${g.chips ? "chips" : "cards"}">${items}</div></div>`;
+      ${g.chips ? `<div class="chips">${items}</div>` : `<div class="cards" style="${gridVars(g.options.length)}">${items}</div>`}</div>`;
+  }
+
+  /* Broj stupaca/redaka da kartice stanu na ekran bez scrollanja */
+  function gridVars(n) {
+    const cols = n <= 5 ? n : Math.ceil(n / 2);
+    const mcols = n <= 2 ? n : n === 9 ? 3 : 2;
+    return `--cols:${cols};--rows:${Math.ceil(n / cols)};--mcols:${mcols};--mrows:${Math.ceil(n / mcols)}`;
   }
 
   function renderHand() {
@@ -518,7 +525,7 @@
               ([k, v, step]) => `<div class="row">
                 <div class="k">${esc(k)}</div>
                 <div class="v">${esc(v)}</div>
-                <button class="btn tiny ghost" data-edit="${step}">Uredi ✏️</button>
+                <button class="btn tiny ghost" data-edit="${step}" aria-label="Uredi">✏️<span class="lbl"> Uredi</span></button>
               </div>`
             )
             .join("")}

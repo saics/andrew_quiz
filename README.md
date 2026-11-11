@@ -12,7 +12,7 @@ a odgovori se šalju tebi – da lakše odabereš gaming miša za Božić. 🎁
 5. **Težina** – ultralagan / lagan / srednji / teži / nije bitno
 6. **Žičani ili bežični**
 7. **Boja** (sa slikama, može više) + RGB da/ne
-8. **Što mu se sviđa / ne sviđa kod trenutnog miša** i napomene (neobavezno)
+8. **Što mu se sviđa / ne sviđa kod trenutnog miša** (obavezno)
 
 Dolje lijevo se cijelo vrijeme vrti Subway Surfers gameplay s YouTubea (bez zvuka) – ID videa je u `index.html`.
 

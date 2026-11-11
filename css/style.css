@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
   line-height: 1.45;
 }
-#app { max-width: 900px; margin: 0 auto; padding: 24px 18px 190px; }
+#app { max-width: 900px; margin: 0 auto; padding: 24px 18px; }
 h1 { font-size: clamp(24px, 5vw, 34px); margin: 18px 0 6px; line-height: 1.15; }
 .sub { color: var(--muted); margin: 0 0 22px; }
 .muted { color: var(--muted); }
@@ -179,20 +179,112 @@ input[type="range"]:disabled { cursor: not-allowed; }
 
 
 /* ---------- mobile ---------- */
-@media (max-width: 700px) {
-  .hand-wrap { grid-template-columns: 1fr; }
-  .hand-img { max-width: 300px; margin: 0 auto; }
-  .row { grid-template-columns: 1fr auto; }
-  .row .k { grid-column: 1 / -1; margin-bottom: -8px; }
-  .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .card .img { height: 90px; }
-  .card .img svg, .card .img .grip-img { max-height: 90px; }
-  .emoji { font-size: 52px; }
-  .gif67 { width: 92px; height: 92px; right: 10px; bottom: 10px; }
-  .subway { width: 76px; height: 135px; left: 10px; bottom: 10px; }
-  .card .img .mouse-photo { max-height: 90px; }
-  #app { padding-bottom: 190px; }
-}
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* =================================================================== *
+ *  Sve stane na ekran (bez scrollanja)
+ *  --ovh = visina prostora koji dolje zauzimaju 67 + Subway Surfers
+ * =================================================================== */
+:root { --ovh: 0px; --ovw-l: 0px; --ovw-r: 0px; }
+html, body { height: 100%; }
+#app {
+  height: 100vh; height: 100dvh;
+  display: flex; flex-direction: column;
+  padding: clamp(10px, 2.2vh, 24px) 18px clamp(10px, 2vh, 20px);
+}
+h1 { font-size: clamp(20px, min(5vw, 4.2vh), 34px); margin: clamp(6px, 1.6vh, 18px) 0 4px; }
+.sub { margin: 0 0 clamp(8px, 1.8vh, 18px); font-size: clamp(13px, 2vh, 16px); }
+
+/* koraci */
+.step, .review, .welcome, .done { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.step-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(8px, 1.6vh, 18px); }
+.group { margin: 0; }
+.group-cards { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.glabel { margin-bottom: 6px; font-size: clamp(14px, 2.2vh, 17px); }
+.cards {
+  flex: 1; min-height: 0;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  max-height: calc(var(--rows) * 300px);
+  gap: clamp(8px, 1.4vh, 12px);
+}
+.card { min-height: 0; overflow: hidden; padding: clamp(6px, 1.2vh, 14px) 10px; gap: clamp(2px, .6vh, 6px); justify-content: center; }
+.card .img { flex: 1 1 auto; height: auto; min-height: 0; max-height: 150px; }
+.card .img svg, .card .img img, .card .img .grip-img, .card .img .mouse-photo { max-height: 100%; height: 100%; width: auto; max-width: 100%; object-fit: contain; }
+.card .img .emoji { font-size: clamp(30px, 7vh, 64px); }
+.card .t { font-size: clamp(13px, 2vh, 16px); line-height: 1.2; }
+.card .d { font-size: clamp(11px, 1.6vh, 13px); line-height: 1.3; }
+.card:hover { transform: none; }
+.txt { min-height: 0; }
+textarea.txt { flex: 1; resize: none; min-height: 90px; max-height: 260px; }
+.step-body > .group:has(textarea) { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+/* šaka */
+.hand-wrap { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+.hand-img { min-height: 0; display: flex; align-items: center; justify-content: center; padding: 8px; }
+.hand-photo { width: auto; max-width: 100%; height: 100%; max-height: 100%; object-fit: contain; }
+.hand-controls { align-self: center; }
+
+/* navigacija */
+.nav { margin-top: clamp(8px, 1.6vh, 14px); padding-top: clamp(8px, 1.6vh, 16px); flex: none; align-items: center; }
+#needHint { margin: 6px 0 0; }
+
+/* početna / kraj */
+.welcome, .done { justify-content: center; align-items: center; padding-top: 0; }
+.meme { width: min(480px, 88vw, calc(100dvh - 210px - var(--ovh))); margin: 0 auto; }
+.small-meme { width: min(380px, 80vw, calc(100dvh - 330px - var(--ovh))); }
+.lead { margin: clamp(10px, 2vh, 28px) 0 4px; font-size: clamp(16px, 2.6vh, 20px); }
+.welcome .actions, .done .actions { margin-top: clamp(12px, 2.4vh, 24px); }
+.done p { margin: 4px 0; }
+
+/* meme tekst i emoji se skaliraju s veličinom slike */
+.meme-img { container-type: inline-size; }
+.meme-top, .meme-bottom { font-size: 12.5cqw; }
+.meme-face { font-size: 42cqw; }
+
+/* pregled */
+.review .table { flex: 0 1 auto; min-height: 0; overflow: auto; }
+.row { padding: clamp(4px, .9vh, 11px) 14px; grid-template-columns: 210px 1fr auto; }
+.row .v { font-size: clamp(13px, 1.9vh, 16px); }
+.review .actions { margin-top: clamp(10px, 2vh, 24px); }
+.review .btn.big { font-size: clamp(16px, 2.4vh, 20px); padding: clamp(10px, 1.6vh, 16px) 26px; }
+.warn { margin-top: 10px; padding: 6px 12px; font-size: 14px; }
+
+/* 67 + Subway Surfers: na širokom ekranu stoje sa strane, na užem ostavljamo mjesto dolje */
+@media (max-width: 1239px) {
+  :root { --ovh: 150px; --ovw-l: 106px; --ovw-r: 106px; }
+  .gif67 { width: 96px; height: 96px; right: 10px; bottom: 10px; }
+  .subway { width: 84px; height: 150px; left: 10px; bottom: 10px; }
+  #app { max-width: none; padding-bottom: 10px; }
+  .review, .welcome, .done { padding-bottom: calc(var(--ovh) - 10px); }
+  /* gumbi Natrag/Dalje stoje dolje između dva videa */
+  .nav { min-height: calc(var(--ovh) - 10px); align-items: flex-end; padding-left: calc(var(--ovw-l) - 18px); padding-right: calc(var(--ovw-r) - 18px); padding-bottom: 0; }
+  .step { position: relative; }
+  #needHint { position: absolute; left: var(--ovw-l); right: var(--ovw-r); bottom: calc(var(--ovh) - 30px); }
+}
+@media (max-width: 700px) {
+  :root { --ovh: 118px; --ovw-l: 74px; --ovw-r: 82px; }
+  .gif67 { width: 72px; height: 72px; right: 8px; bottom: 8px; }
+  .subway { width: 60px; height: 107px; left: 8px; bottom: 8px; }
+  #app { padding-left: 12px; padding-right: 12px; }
+  .nav { padding-left: calc(var(--ovw-l) - 12px); padding-right: calc(var(--ovw-r) - 12px); gap: 8px; }
+  .nav .btn { padding: 10px 12px; font-size: 15px; }
+  .nav .btn.primary { min-width: 0; flex: 1; }
+  .cards { grid-template-columns: repeat(var(--mcols), minmax(0, 1fr)); grid-template-rows: repeat(var(--mrows), minmax(0, 1fr)); max-height: none; }
+  .card { padding: 6px 6px; border-radius: 12px; }
+  .card .tick { width: 20px; height: 20px; font-size: 12px; top: 5px; right: 5px; }
+  .hand-wrap { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; }
+  .hand-img { max-width: none; }
+  .bigval { font-size: 34px; }
+  .row { grid-template-columns: 38% 1fr auto; gap: 8px; padding: 4px 10px; }
+  .row .k { grid-column: auto; margin: 0; font-size: 12px; }
+  .row .v { font-size: 13px; }
+  .row .lbl { display: none; }
+  .review .actions { gap: 8px; }
+  .review .actions .btn { width: 100%; }
+  .review .btn.big { font-size: 16px; padding: 10px 14px; }
+  .chip { padding: 6px 10px; font-size: 14px; }
+  #needHint { display: none; }
 }
