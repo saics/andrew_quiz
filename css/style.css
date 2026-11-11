@@ -161,23 +161,14 @@ input[type="range"]:disabled { cursor: not-allowed; }
 .errbox { background: var(--card); border: 1px solid #7a1f30; padding: 14px; border-radius: 14px; margin-top: 18px; }
 .errbox .btn { margin-top: 10px; }
 
-/* ---------- 67 gif ---------- */
+/* ---------- 67 ---------- */
 .gif67 {
   position: fixed; right: 14px; bottom: 14px; z-index: 50;
-  width: 150px; height: 150px; border-radius: 14px; overflow: hidden;
-  pointer-events: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  width: 150px; height: 150px; border-radius: 14px; overflow: hidden; background: #000;
+  pointer-events: none; box-shadow: 0 6px 24px rgba(0,0,0,.5);
 }
-.gif67 img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gif67 .fb { display: none; }
-.gif67.fallback { background: #1d1d27; border: 2px dashed #4a4a5a; }
-.gif67.fallback img { display: none; }
-.gif67.fallback .fb {
-  display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; gap: 10px;
-  font-family: var(--meme); font-size: 64px; color: var(--acc2);
-}
-.gif67.fallback .fb span { display: inline-block; animation: sixseven 0.7s ease-in-out infinite; }
-.gif67.fallback .fb span:last-child { animation-delay: -0.35s; }
+.gif67 video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* ---------- Subway Surfers (dolje lijevo) ---------- */
 .subway {
   position: fixed; left: 14px; bottom: 14px; z-index: 50;
@@ -186,7 +177,6 @@ input[type="range"]:disabled { cursor: not-allowed; }
 }
 .subway iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-@keyframes sixseven { 0%, 100% { transform: translateY(14px); } 50% { transform: translateY(-14px); } }
 
 /* ---------- mobile ---------- */
 @media (max-width: 700px) {
@@ -201,7 +191,6 @@ input[type="range"]:disabled { cursor: not-allowed; }
   .gif67 { width: 92px; height: 92px; right: 10px; bottom: 10px; }
   .subway { width: 76px; height: 135px; left: 10px; bottom: 10px; }
   .card .img .mouse-photo { max-height: 90px; }
-  .gif67.fallback .fb { font-size: 40px; }
   #app { padding-bottom: 190px; }
 }
 @media (prefers-reduced-motion: reduce) {

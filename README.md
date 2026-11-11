@@ -39,10 +39,10 @@ Otvori `js/config.js` i popuni barem jednu opciju:
 
 Ako ništa nije podešeno (ili slanje ne uspije), Andrew dobije gumb *Kopiraj* da ti odgovore pošalje porukom.
 
-## 2) 67 GIF
+## 2) 67
 
-Stavi svoj gif u **`assets/67.gif`** – prikazuje se dolje desno na svim stranicama i vrti se u krug.
-Dok ga nema, tamo je animirani „6 7" placeholder.
+Dolje desno se na svim stranicama vrti `assets/67.mp4` (GIF s Tenora pretvoren u mp4 – 240 KB umjesto 11 MB).
+Za drugi klip samo zamijeni tu datoteku (isto ime).
 
 ## 3) Objavi stranicu (GitHub Pages)
 

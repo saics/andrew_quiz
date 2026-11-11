@@ -16,11 +16,9 @@
 <body>
   <main id="app" aria-live="polite"></main>
 
-  <!-- 67 GIF: stavi svoj gif u assets/67.gif i on će se vrtiti dolje desno na svim stranicama.
-       Dok ga nema, prikazuje se animirani "6 7" placeholder. -->
-  <div class="gif67" id="gif67" aria-hidden="true">
-    <img src="assets/67.gif" alt="" onerror="this.parentElement.classList.add('fallback')" />
-    <div class="fb"><span>6</span><span>7</span></div>
+  <!-- 67 (dolje desno na svim stranicama) – iz GIF-a pretvoreno u mp4 jer je 40x manji -->
+  <div class="gif67" aria-hidden="true">
+    <video src="assets/67.mp4" autoplay muted loop playsinline preload="auto"></video>
   </div>
 
   <!-- Subway Surfers gameplay (YouTube, bez zvuka, vrti se u krug) dolje lijevo -->

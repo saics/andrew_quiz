@@ -1,1 +1,1 @@
-Ovdje stavi `67.gif` (točno to ime) – automatski se prikazuje dolje desno na svim stranicama.
+`67.mp4` se vrti dolje desno na svim stranicama. `grips/` i `mice/` su slike sa shapefinder.cc, `hand-measure.webp` je slika za mjerenje šake.
