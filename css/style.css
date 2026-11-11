@@ -233,7 +233,7 @@ textarea.txt { flex: 1; resize: none; min-height: 90px; max-height: 260px; }
 
 /* početna / kraj */
 .welcome, .done { justify-content: center; align-items: center; padding-top: 0; }
-.meme { width: min(480px, 88vw, calc(100dvh - 210px - var(--ovh))); margin: 0 auto; }
+.meme { width: min(480px, 88vw, calc(100dvh - 260px - var(--ovh))); margin: 0 auto; }
 .small-meme { width: min(380px, 80vw, calc(100dvh - 330px - var(--ovh))); }
 .lead { margin: clamp(10px, 2vh, 28px) 0 4px; font-size: clamp(16px, 2.6vh, 20px); }
 .welcome .actions, .done .actions { margin-top: clamp(12px, 2.4vh, 24px); }

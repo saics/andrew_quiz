@@ -361,7 +361,7 @@
             <div class="meme-face">🤨</div>
           </div>
         </div>
-        ${S.sentAt ? `<p class="note">Već si jednom poslao odgovore ✅ Možeš ih riješiti opet – računa se zadnji.</p>` : ""}
+        <p class="lead">Ovdje ćemo ti naći novi perfect miš 🖱️</p>
         <div class="actions center">
           ${inProgress ? `<button class="btn primary big" data-act="continue">Nastavi gdje si stao 👉</button>
                           <button class="btn ghost" data-act="start">Kreni ispočetka</button>`
@@ -590,7 +590,6 @@
           <div class="meme-img done-img">
             <div class="meme-top">Poslano</div>
             <div class="meme-face">🫡</div>
-            <div class="meme-bottom">Sad šuti i čekaj</div>
           </div>
         </div>
         <p class="lead">Hvala ti! Odgovori su stigli. 🎁</p>
