@@ -105,6 +105,7 @@ code { background: var(--card2); padding: 1px 6px; border-radius: 5px; }
 .card.sel { border-color: var(--acc); background: #24161b; }
 .card .img { height: 110px; width: 100%; display: flex; align-items: center; justify-content: center; }
 .card .img svg { max-height: 110px; max-width: 100%; }
+.card .img .grip-img { max-height: 110px; max-width: 100%; object-fit: contain; -webkit-user-drag: none; }
 .card .t { font-weight: 800; font-size: 16px; }
 .card .d { color: var(--muted); font-size: 13px; }
 .card .tick {
@@ -133,7 +134,7 @@ code { background: var(--card2); padding: 1px 6px; border-radius: 5px; }
 /* ---------- hand step ---------- */
 .hand-wrap { display: grid; grid-template-columns: minmax(220px, 1fr) 1.2fr; gap: 24px; align-items: start; }
 .hand-img { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px; }
-.hand-svg { width: 100%; height: auto; display: block; }
+.hand-photo { width: 100%; height: auto; display: block; border-radius: 10px; background: #fff; }
 .bigval { font-size: 44px; font-weight: 900; letter-spacing: -1px; }
 .bigval .cat { font-size: 15px; font-weight: 700; color: #111; background: var(--acc2); padding: 3px 10px; border-radius: 99px; vertical-align: middle; letter-spacing: 0; }
 .range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
@@ -193,7 +194,7 @@ input[type="range"]:disabled { cursor: not-allowed; }
   .row .k { grid-column: 1 / -1; margin-bottom: -8px; }
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .card .img { height: 90px; }
-  .card .img svg { max-height: 90px; }
+  .card .img svg, .card .img .grip-img { max-height: 90px; }
   .emoji { font-size: 52px; }
   .gif67 { width: 92px; height: 92px; right: 10px; bottom: 10px; }
   .gif67.fallback .fb { font-size: 40px; }

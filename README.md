@@ -5,10 +5,10 @@ a odgovori se šalju tebi – da lakše odabereš gaming miša i mousepad za Bo�
 
 ## Što pita
 
-1. **Veličina šake** – slider (dužina od vrha srednjeg prsta do zapešća) + neobavezno širina, sa slikom kako mjeriti
+1. **Veličina šake** – slider (dužina od vrha srednjeg prsta do zapešća) + neobavezno širina, sa slikom kako mjeriti (`assets/hand-measure.webp`)
 2. **Oblik** – simetrični / ergonomski / nije bitno
 3. **Gumbi** – broj bočnih gumba + dodaci (DPI gumb, tilt kotačić, sniper gumb...)
-4. **Grip** – palm / claw / fingertip / ne znam (sa slikama)
+4. **Grip** – palm / relaxed claw / claw / fingertip claw / fingertip / ne znam (3D slike sa [shapefinder.cc](https://shapefinder.cc), u `assets/grips/`)
 5. **Težina** – ultralagan / lagan / srednji / teži / nije bitno
 6. **Žičani ili bežični**
 7. **Boja** (sa slikama, može više) + RGB da/ne

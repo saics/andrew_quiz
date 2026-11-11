@@ -7,39 +7,9 @@
   /* ------------------------------------------------------------------ *
    *  SVG ilustracije
    * ------------------------------------------------------------------ */
-  const SKIN = "#f1c7a3";
   const MOUSE = "#2b2b36";
 
-  const svgHand = `
-<svg viewBox="0 0 320 380" class="hand-svg" role="img" aria-label="Kako izmjeriti šaku">
-  <defs>
-    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#ff3b5c"/>
-    </marker>
-    <marker id="arr2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#ffd23f"/>
-    </marker>
-  </defs>
-  <g fill="${SKIN}">
-    <rect x="78" y="80" width="32" height="120" rx="16"/>
-    <rect x="114" y="50" width="32" height="150" rx="16"/>
-    <rect x="150" y="66" width="32" height="130" rx="16"/>
-    <rect x="186" y="104" width="28" height="100" rx="14"/>
-    <rect x="60" y="190" width="32" height="110" rx="16" transform="rotate(-35 76 290)"/>
-    <rect x="76" y="170" width="140" height="142" rx="38"/>
-    <rect x="104" y="290" width="86" height="90" rx="8"/>
-  </g>
-  <path d="M100 314 Q146 324 192 314" stroke="#b9805a" stroke-width="3" fill="none"/>
-  <g stroke="#9a9aa8" stroke-width="1.5" stroke-dasharray="4 4">
-    <line x1="130" y1="50" x2="276" y2="50"/>
-    <line x1="192" y1="316" x2="276" y2="316"/>
-  </g>
-  <line x1="266" y1="56" x2="266" y2="310" stroke="#ff3b5c" stroke-width="4" marker-start="url(#arr)" marker-end="url(#arr)"/>
-  <text x="292" y="183" fill="#ff3b5c" font-size="17" font-weight="800" text-anchor="middle" transform="rotate(90 292 183)">DUŽINA</text>
-  <line x1="84" y1="222" x2="208" y2="222" stroke="#ffd23f" stroke-width="4" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
-  <text x="146" y="248" fill="#3a2a20" font-size="14" font-weight="800" text-anchor="middle">ŠIRINA</text>
-  <text x="200" y="345" fill="#9a9aa8" font-size="12" text-anchor="start">← crta na zapešću</text>
-</svg>`;
+  const handImg = `<img src="assets/hand-measure.webp" class="hand-photo" alt="Kako izmjeriti šaku: od vrha srednjeg prsta do crte na zapešću" width="571" height="710">`;
 
   const topSym = (fill = MOUSE, stroke = "#555", wheel = "#888") => `
 <svg viewBox="0 0 120 184" class="mouse-top">
@@ -69,12 +39,8 @@
     return s;
   })();
 
-  const gripSvg = (handPath, width) => `
-<svg viewBox="0 6 220 116" class="mouse-side">
-  <path d="M15 114 C15 86 45 58 100 54 C155 50 195 76 197 114 Z" fill="${MOUSE}" stroke="#555" stroke-width="2"/>
-  <line x1="10" y1="116" x2="202" y2="116" stroke="#444" stroke-width="3" stroke-linecap="round"/>
-  <path d="${handPath}" fill="none" stroke="${SKIN}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`;
+  // 3D renderi gripova (izvor: shapefinder.cc)
+  const gripImg = (file, alt) => `<img src="assets/grips/${file}.webp" class="grip-img" alt="${alt}" draggable="false">`;
 
   const padSvg = (w, h, label) => `
 <svg viewBox="0 0 200 100" class="pad-svg">
@@ -162,9 +128,11 @@
         {
           key: "grip",
           options: [
-            { v: "palm", label: "Palm grip", desc: "Cijeli dlan leži na mišu, prsti ispruženi.", img: gripSvg("M30 80 C50 60 80 46 110 44 C150 42 185 58 218 76", 20) },
-            { v: "claw", label: "Claw grip", desc: "Prsti savijeni kao kandža, dlan dodiruje samo stražnji dio.", img: gripSvg("M28 88 L50 40 L95 32 C130 30 160 48 218 72", 16) },
-            { v: "fingertip", label: "Fingertip grip", desc: "Samo vrhovi prstiju diraju miša, dlan je u zraku.", img: gripSvg("M30 86 L54 36 L100 22 C140 14 180 18 218 26", 15) },
+            { v: "palm", label: "Palm grip", desc: "Cijeli dlan leži na mišu, prsti ispruženi.", img: gripImg("palm", "Palm grip") },
+            { v: "relaxed-claw", label: "Relaxed claw", desc: "Između palma i clawa – dlan leži na mišu, ali prsti su malo savijeni.", img: gripImg("relaxed-claw", "Relaxed claw grip") },
+            { v: "claw", label: "Claw grip", desc: "Prsti savijeni kao kandža, dlan dodiruje samo stražnji dio.", img: gripImg("claw", "Claw grip") },
+            { v: "fingertip-claw", label: "Fingertip claw", desc: "Prsti savijeni, a dlan jedva dodiruje miša.", img: gripImg("fingertip-claw", "Fingertip claw grip") },
+            { v: "fingertip", label: "Fingertip grip", desc: "Samo vrhovi prstiju diraju miša, dlan je u zraku.", img: gripImg("fingertip", "Fingertip grip") },
             { v: "unknown", label: "Ne znam / mix", desc: "Mijenjam ili nisam siguran.", img: emoji("🤔") },
           ],
         },
@@ -402,7 +370,7 @@
   function hint() {
     const a = A();
     const L = a.handLength * 10;
-    const r = { palm: [0.6, 0.66], claw: [0.57, 0.63], fingertip: [0.52, 0.58] }[a.grip] || [0.56, 0.64];
+    const r = { palm: [0.6, 0.66], "relaxed-claw": [0.58, 0.65], claw: [0.57, 0.63], "fingertip-claw": [0.54, 0.6], fingertip: [0.52, 0.58] }[a.grip] || [0.56, 0.64];
     let s = `Dužina miša cca ${Math.round(L * r[0])}–${Math.round(L * r[1])} mm`;
     if (a.handWidthOn) {
       const W = a.handWidth * 10;
@@ -581,7 +549,7 @@
     const a = A();
     return `
       <div class="hand-wrap">
-        <div class="hand-img">${svgHand}</div>
+        <div class="hand-img">${handImg}</div>
         <div class="hand-controls">
           <div class="group">
             <div class="glabel">Dužina šake</div>
@@ -596,7 +564,7 @@
           <div class="group">
             <label class="check"><input type="checkbox" id="hwOn" ${a.handWidthOn ? "checked" : ""}> Izmjerio sam i širinu <span class="opt">(neobavezno)</span></label>
             <div id="hwBox" class="${a.handWidthOn ? "" : "disabled"}">
-              <div class="muted small">Preko zglobova prstiju, bez palca (žuta strelica).</div>
+              <div class="muted small">Preko zglobova prstiju (najširi dio dlana), bez palca.</div>
               <div class="bigval"><span id="hwVal">${a.handWidth.toFixed(1)}</span> cm</div>
               <input type="range" id="hw" min="6" max="12" step="0.1" value="${a.handWidth}" ${a.handWidthOn ? "" : "disabled"} aria-label="Širina šake u cm">
               <div class="range-labels"><span>6 cm</span><span>12 cm</span></div>
