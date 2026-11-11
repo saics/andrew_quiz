@@ -115,7 +115,8 @@ code { background: var(--card2); padding: 1px 6px; border-radius: 5px; }
 .card.sel .tick { display: flex; }
 .emoji { font-size: 64px; line-height: 1; }
 .mouse-top { height: 105px; }
-.mouse-side, .pad-svg { width: 100%; height: 100px; }
+.mouse-side { width: 100%; height: 100px; }
+.card .img .mouse-photo { max-height: 110px; max-width: 100%; object-fit: contain; background: #fff; border-radius: 10px; padding: 6px; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
@@ -138,9 +139,6 @@ code { background: var(--card2); padding: 1px 6px; border-radius: 5px; }
 .bigval { font-size: 44px; font-weight: 900; letter-spacing: -1px; }
 .bigval .cat { font-size: 15px; font-weight: 700; color: #111; background: var(--acc2); padding: 3px 10px; border-radius: 99px; vertical-align: middle; letter-spacing: 0; }
 .range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
-.fine { display: flex; gap: 8px; margin-top: 8px; }
-.tip { background: var(--card); border: 1px dashed var(--line); padding: 12px 14px; border-radius: 12px; font-size: 14px; color: var(--muted); }
-.tip b { color: var(--txt); }
 
 input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 34px; background: transparent; cursor: pointer; }
 input[type="range"]::-webkit-slider-runnable-track { height: 10px; border-radius: 99px; background: linear-gradient(90deg, var(--acc), var(--acc2)); }
@@ -180,6 +178,14 @@ input[type="range"]:disabled { cursor: not-allowed; }
 }
 .gif67.fallback .fb span { display: inline-block; animation: sixseven 0.7s ease-in-out infinite; }
 .gif67.fallback .fb span:last-child { animation-delay: -0.35s; }
+/* ---------- Subway Surfers (dolje lijevo) ---------- */
+.subway {
+  position: fixed; left: 14px; bottom: 14px; z-index: 50;
+  width: 150px; height: 267px; border-radius: 14px; overflow: hidden; background: #000;
+  pointer-events: none; box-shadow: 0 6px 24px rgba(0,0,0,.5);
+}
+.subway iframe { width: 100%; height: 100%; border: 0; display: block; }
+
 @keyframes sixseven { 0%, 100% { transform: translateY(14px); } 50% { transform: translateY(-14px); } }
 
 /* ---------- mobile ---------- */
@@ -193,8 +199,10 @@ input[type="range"]:disabled { cursor: not-allowed; }
   .card .img svg, .card .img .grip-img { max-height: 90px; }
   .emoji { font-size: 52px; }
   .gif67 { width: 92px; height: 92px; right: 10px; bottom: 10px; }
+  .subway { width: 76px; height: 135px; left: 10px; bottom: 10px; }
+  .card .img .mouse-photo { max-height: 90px; }
   .gif67.fallback .fb { font-size: 40px; }
-  #app { padding-bottom: 130px; }
+  #app { padding-bottom: 190px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }

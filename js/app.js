@@ -18,14 +18,6 @@
   <rect x="55" y="24" width="10" height="24" rx="5" fill="${wheel}"/>
 </svg>`;
 
-  const topErgo = `
-<svg viewBox="0 0 120 184" class="mouse-top">
-  <path d="M58 8 C94 6 108 46 106 92 C104 136 94 176 62 178 C34 179 20 162 16 142 C10 128 3 120 7 106 C11 96 19 92 19 80 C19 44 27 10 58 8 Z" fill="${MOUSE}" stroke="#555" stroke-width="2"/>
-  <path d="M55 8 L60 72 M20 76 Q60 80 104 70" stroke="#555" stroke-width="2" fill="none" opacity=".7"/>
-  <rect x="52" y="24" width="10" height="24" rx="5" fill="#888" transform="rotate(-4 57 36)"/>
-  <path d="M10 112 Q16 122 26 128" stroke="#ff3b5c" stroke-width="3" fill="none" stroke-linecap="round"/>
-</svg>`;
-
   const sideBody = (inner) => `
 <svg viewBox="0 30 200 84" class="mouse-side">
   <path d="M12 104 C12 72 40 44 95 40 C150 36 188 62 190 104 Z" fill="${MOUSE}" stroke="#555" stroke-width="2"/>
@@ -42,12 +34,6 @@
   // 3D renderi gripova (izvor: shapefinder.cc)
   const gripImg = (file, alt) => `<img src="assets/grips/${file}.webp" class="grip-img" alt="${alt}" draggable="false">`;
 
-  const padSvg = (w, h, label) => `
-<svg viewBox="0 0 200 100" class="pad-svg">
-  <rect x="${(200 - w) / 2}" y="${(100 - h) / 2}" width="${w}" height="${h}" rx="6" fill="#23232d" stroke="#ff3b5c" stroke-width="2"/>
-  <ellipse cx="${(200 - w) / 2 + w - 22}" cy="50" rx="7" ry="11" fill="#888"/>
-  <text x="${(200 - w) / 2 + 10}" y="${(100 - h) / 2 + 18}" font-size="12" fill="#a0a0ad" font-weight="700">${label}</text>
-</svg>`;
 
   const rgbMouse = `
 <svg viewBox="0 0 120 184" class="mouse-top">
@@ -59,6 +45,9 @@
   <path d="M60 8 L60 72 M20 74 Q60 80 100 74" stroke="#222" stroke-width="2" fill="none" opacity=".5"/>
   <rect x="55" y="24" width="10" height="24" rx="5" fill="#222"/>
 </svg>`;
+
+  // Slike stvarnih miševa odozgo (izvor: shapefinder.cc)
+  const mouseImg = (file, name) => `<img src="assets/mice/${file}.webp" class="mouse-photo" alt="${name}" title="${name}" draggable="false">`;
 
   const emoji = (e) => `<div class="emoji">${e}</div>`;
 
@@ -80,8 +69,8 @@
         {
           key: "shape",
           options: [
-            { v: "sym", label: "Simetričan", desc: "Isti s obje strane. Univerzalan, dobar za brze pokrete i sve gripove.", img: topSym() },
-            { v: "ergo", label: "Ergonomski", desc: "Oblikovan za desnu ruku, s udubljenjem za palac. Udobniji za dlan.", img: topErgo },
+            { v: "sym", label: "Simetričan", desc: "Isti s obje strane. Univerzalan, dobar za brze pokrete i sve gripove.", img: mouseImg("symmetrical", "Logitech G Pro X Superlight 2") },
+            { v: "ergo", label: "Ergonomski", desc: "Oblikovan za desnu ruku, s udubljenjem za palac. Udobniji za dlan.", img: mouseImg("ergonomic", "Razer DeathAdder V3 Pro") },
             { v: "any", label: "Nije mi bitno", desc: "Samo da je dobar.", img: emoji("🤷") },
           ],
         },
@@ -100,22 +89,6 @@
             { v: "3-5", label: "3 – 5 gumba", desc: "Malo više za bindove u igri.", img: sideBody(sb(48, 56) + sb(78, 56) + sb(48, 70) + sb(78, 70)) },
             { v: "mmo", label: "Puno (MMO, 6+)", desc: "Cijela tipkovnica pod palcem.", img: sideBody(mmoGrid) },
             { v: "any", label: "Nije mi bitno", desc: "", img: emoji("🤷") },
-          ],
-        },
-        {
-          key: "extras",
-          multi: true,
-          chips: true,
-          optional: true,
-          exclusive: "none",
-          label: "Želiš li još nešto od ovoga? (može više)",
-          options: [
-            { v: "dpi", label: "🎚️ DPI gumb na vrhu" },
-            { v: "tilt", label: "↔️ Kotačić koji ide lijevo/desno" },
-            { v: "infinite", label: "♾️ Kotačić koji se slobodno vrti" },
-            { v: "sniper", label: "🎯 Sniper gumb (privremeno spori DPI)" },
-            { v: "software", label: "⚙️ Programiranje gumba / makroi" },
-            { v: "none", label: "🙅 Ništa od toga" },
           ],
         },
       ],
@@ -204,93 +177,11 @@
       ],
     },
     {
-      id: "games",
-      title: "Što igraš? 🎮",
-      sub: "Označi sve što često igraš.",
-      groups: [
-        {
-          key: "games",
-          multi: true,
-          chips: true,
-          options: [
-            { v: "cs2", label: "CS2" },
-            { v: "valorant", label: "Valorant" },
-            { v: "fortnite", label: "Fortnite" },
-            { v: "lol", label: "League of Legends" },
-            { v: "minecraft", label: "Minecraft" },
-            { v: "apex", label: "Apex Legends" },
-            { v: "cod", label: "Call of Duty / Warzone" },
-            { v: "r6", label: "Rainbow Six Siege" },
-            { v: "ow", label: "Overwatch 2" },
-            { v: "rivals", label: "Marvel Rivals" },
-            { v: "rl", label: "Rocket League" },
-            { v: "gta", label: "GTA V / RP" },
-            { v: "roblox", label: "Roblox" },
-            { v: "fc", label: "EA FC" },
-            { v: "osu", label: "osu!" },
-            { v: "other", label: "Nešto drugo" },
-          ],
-        },
-        { key: "gamesOther", type: "text", optional: true, label: "Nešto drugo / glavna igra", placeholder: "npr. Rust, Dota 2..." },
-        {
-          key: "aim",
-          label: "Kako najčešće ciljaš / pomičeš miša?",
-          options: [
-            { v: "wrist", label: "Iz zapešća", desc: "Mali pokreti, ruka stoji na mjestu (veći sens).", img: emoji("🤏") },
-            { v: "arm", label: "Iz cijele ruke", desc: "Veliki pokreti, miš putuje po stolu (manji sens).", img: emoji("💪") },
-            { v: "mix", label: "Mix", desc: "Malo jedno, malo drugo.", img: emoji("🔄") },
-            { v: "unknown", label: "Ne znam", desc: "", img: emoji("🤔") },
-          ],
-        },
-        { key: "sens", type: "text", optional: true, label: "Sens / DPI (ako znaš)", placeholder: "npr. 800 DPI, 0.35 u Valorantu" },
-      ],
-    },
-    {
-      id: "pad",
-      title: "I još podloga za miša (mousepad) 🟥",
-      sub: "",
-      groups: [
-        {
-          key: "padSpeed",
-          label: "Kakvu podlogu voliš?",
-          options: [
-            { v: "control", label: "Kontrola (sporija)", desc: "Miš malo \"koči\", lakše se precizno zaustaviti.", img: emoji("🐢") },
-            { v: "balanced", label: "Balansirana", desc: "Između – malo brza, malo kontrolirana.", img: emoji("⚖️") },
-            { v: "speed", label: "Brza (speed)", desc: "Miš klizi kao po ledu.", img: emoji("🚀") },
-            { v: "unknown", label: "Ne znam / nije bitno", desc: "", img: emoji("🤷") },
-          ],
-        },
-        {
-          key: "padSize",
-          label: "Koliko velika?",
-          options: [
-            { v: "M", label: "Srednja", desc: "~36 × 30 cm", img: padSvg(72, 60, "M") },
-            { v: "L", label: "Velika", desc: "~45 × 40 cm", img: padSvg(90, 80, "L") },
-            { v: "XL", label: "Preko cijelog stola", desc: "~90 × 40 cm (i tipkovnica stane)", img: padSvg(180, 80, "XL") },
-            { v: "any", label: "Nije mi bitno", desc: "", img: emoji("🤷") },
-          ],
-        },
-        {
-          key: "padLook",
-          chips: true,
-          label: "Izgled podloge?",
-          options: [
-            { v: "black", label: "⬛ Obična crna" },
-            { v: "design", label: "🎨 S nekim dizajnom" },
-            { v: "match", label: "🖱️ Da paše uz miša" },
-            { v: "rgb", label: "🌈 S RGB rubom" },
-            { v: "any", label: "🤷 Nije bitno" },
-          ],
-        },
-      ],
-    },
-    {
       id: "extra",
       title: "Još samo malo... 🙏",
       sub: "Ovo je sve neobavezno, ali jako pomaže.",
       groups: [
-        { key: "currentMouse", type: "text", optional: true, label: "Kojeg miša sada koristiš?", placeholder: "npr. Logitech G305, ne znam, neki stari..." },
-        { key: "currentLikes", type: "textarea", optional: true, label: "Što ti se sviđa / ne sviđa kod njega?", placeholder: "npr. pretežak je, kabel mi smeta, volim oblik..." },
+        { key: "currentLikes", type: "textarea", optional: true, label: "Što ti se sviđa / ne sviđa kod miša kojeg sada koristiš?", placeholder: "npr. pretežak je, kabel mi smeta, volim oblik..." },
         { key: "notes", type: "textarea", optional: true, label: "Još nešto što bi trebalo znati?", placeholder: "Bilo što 😄" },
       ],
     },
@@ -303,20 +194,11 @@
     handLength: 18.5,
     shape: null,
     sideButtons: null,
-    extras: [],
     grip: null,
     weight: null,
     connection: null,
     colors: [],
     rgb: null,
-    games: [],
-    gamesOther: "",
-    aim: null,
-    sens: "",
-    padSpeed: null,
-    padSize: null,
-    padLook: null,
-    currentMouse: "",
     currentLikes: "",
     notes: "",
   });
@@ -380,20 +262,12 @@
       ["Dužina šake", `${a.handLength.toFixed(1)} cm (${handCat(a.handLength)})`, "hand"],
       ["Oblik", or(labelOf("shape")), "shape"],
       ["Bočni gumbi", or(labelOf("sideButtons")), "buttons"],
-      ["Dodatni gumbi / featuri", or(labelOf("extras")), "buttons"],
       ["Grip", or(labelOf("grip")), "grip"],
       ["Težina", or(labelOf("weight")), "weight"],
       ["Povezivanje", or(labelOf("connection")), "connection"],
       ["Boja", or(labelOf("colors")), "color"],
       ["RGB", or(labelOf("rgb")), "color"],
-      ["Igre", or([labelOf("games"), a.gamesOther.trim()].filter(Boolean).join(" + ")), "games"],
-      ["Način ciljanja", or(labelOf("aim")), "games"],
-      ["Sens / DPI", or(a.sens.trim()), "games"],
-      ["Podloga – brzina", or(labelOf("padSpeed")), "pad"],
-      ["Podloga – veličina", or(labelOf("padSize")), "pad"],
-      ["Podloga – izgled", or(labelOf("padLook")), "pad"],
-      ["Trenutni miš", or(a.currentMouse.trim()), "extra"],
-      ["Sviđa / ne sviđa", or(a.currentLikes.trim()), "extra"],
+      ["Trenutni miš – sviđa / ne sviđa", or(a.currentLikes.trim()), "extra"],
       ["Napomene", or(a.notes.trim()), "extra"],
     ];
   }
@@ -485,10 +359,8 @@
           <div class="meme-img">
             <div class="meme-top">Bok Andrew</div>
             <div class="meme-face">🤨</div>
-            <div class="meme-bottom">Imam par pitanja</div>
           </div>
         </div>
-        <p class="lead">Ne pitaj zašto. Samo odgovori iskreno. 🤫<br><span class="muted">Traje cca 2 minute.</span></p>
         ${S.sentAt ? `<p class="note">Već si jednom poslao odgovore ✅ Možeš ih riješiti opet – računa se zadnji.</p>` : ""}
         <div class="actions center">
           ${inProgress ? `<button class="btn primary big" data-act="continue">Nastavi gdje si stao 👉</button>
@@ -548,12 +420,7 @@
             <div class="bigval"><span id="hlVal">${a.handLength.toFixed(1)}</span> cm <span class="cat" id="hlCat">${handCat(a.handLength)}</span></div>
             <input type="range" id="hl" min="13" max="24" step="0.1" value="${a.handLength}" aria-label="Dužina šake u cm">
             <div class="range-labels"><span>13 cm</span><span>24 cm</span></div>
-            <div class="fine">
-              <button class="btn small ghost" data-nudge="hl" data-d="-0.1">− 0.1</button>
-              <button class="btn small ghost" data-nudge="hl" data-d="0.1">+ 0.1</button>
-            </div>
           </div>
-          <div class="tip">💡 Nemaš metar? Uzmi ravnalo, ili A4 papir (dug je <b>29.7 cm</b>), ili bankovnu karticu (duga je <b>8.6 cm</b>).</div>
         </div>
       </div>`;
   }
@@ -635,13 +502,6 @@
         save();
       };
       hl.oninput = () => { A().handLength = Math.round(parseFloat(hl.value) * 10) / 10; upd(); };
-      app.querySelectorAll("[data-nudge]").forEach((b) => {
-        b.onclick = () => {
-          const a = A();
-          a.handLength = Math.min(24, Math.max(13, Math.round((a.handLength + parseFloat(b.dataset.d)) * 10) / 10));
-          upd();
-        };
-      });
     }
   }
 

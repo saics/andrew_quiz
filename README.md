@@ -1,20 +1,20 @@
-# Bok Andrew 🤨 – upitnik za gaming miša i podlogu
+# Bok Andrew 🤨 – upitnik za gaming miša
 
 Mala statična stranica (HTML + CSS + JS, bez instalacije) na kojoj Andrew odgovara na pitanja,
-a odgovori se šalju tebi – da lakše odabereš gaming miša i mousepad za Božić. 🎁
+a odgovori se šalju tebi – da lakše odabereš gaming miša za Božić. 🎁
 
 ## Što pita
 
 1. **Veličina šake** – slider (dužina od vrha srednjeg prsta do zapešća), sa slikom kako mjeriti (`assets/hand-measure.webp`)
-2. **Oblik** – simetrični / ergonomski / nije bitno
-3. **Gumbi** – broj bočnih gumba + dodaci (DPI gumb, tilt kotačić, sniper gumb...)
-4. **Grip** – palm / relaxed claw / claw / fingertip claw / fingertip / ne znam (3D slike sa [shapefinder.cc](https://shapefinder.cc), u `assets/grips/`)
+2. **Oblik** – simetrični / ergonomski / nije bitno (slike stvarnih miševa sa [shapefinder.cc](https://shapefinder.cc), u `assets/mice/`)
+3. **Bočni gumbi** – koliko ih želi
+4. **Grip** – palm / relaxed claw / claw / fingertip claw / fingertip / ne znam (3D slike sa shapefinder.cc, u `assets/grips/`)
 5. **Težina** – ultralagan / lagan / srednji / teži / nije bitno
 6. **Žičani ili bežični**
 7. **Boja** (sa slikama, može više) + RGB da/ne
-8. **Igre** koje igra + način ciljanja (zapešće/ruka) + sens/DPI
-9. **Mousepad** – brzina, veličina, izgled
-10. **Trenutni miš** i napomene (neobavezno)
+8. **Što mu se sviđa / ne sviđa kod trenutnog miša** i napomene (neobavezno)
+
+Dolje lijevo se cijelo vrijeme vrti Subway Surfers gameplay s YouTubea (bez zvuka) – ID videa je u `index.html`.
 
 Na kraju: **pregled svih odgovora** („Jesi li siguran?") s gumbom *Uredi* za svako pitanje,
 *Pošalji* i *Idem ispočetka*. Nakon slanja može promijeniti odgovore i poslati opet, ili riješiti sve ispočetka
