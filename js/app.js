@@ -57,7 +57,7 @@
   const STEPS = [
     {
       id: "hand",
-      title: "Koliko ti je velika šaka? ✋",
+      title: "Duljina dlana ✋",
       sub: "Izmjeri od <b>vrha srednjeg prsta</b> do <b>prve crte na zapešću</b> (tamo gdje počinje dlan). Ruka ispružena, prsti skupa.",
       type: "hand",
     },
@@ -95,8 +95,8 @@
     },
     {
       id: "grip",
-      title: "Kako držiš miša? (grip)",
-      sub: "Uzmi svog miša u ruku i vidi koja slika ti je najsličnija. Ako ne znaš, odaberi \"Ne znam\".",
+      title: "Kako držiš miš? (grip)",
+      sub: "Uzmi svoj miš u ruku i vidi koji primjer najbolje paše.",
       groups: [
         {
           key: "grip",
@@ -113,7 +113,7 @@
     },
     {
       id: "weight",
-      title: "Kakav miš ti je najdraži po težini?",
+      title: "Odaberi težinu miša",
       sub: "Za usporedbu: većina \"običnih\" miševa ima oko 90–120 g.",
       groups: [
         {
@@ -260,7 +260,7 @@
     const a = A();
     const or = (x, fb = "—") => x || fb;
     return [
-      ["Dužina šake", `${a.handLength.toFixed(1)} cm (${handCat(a.handLength)})`, "hand"],
+      ["Duljina dlana", `${a.handLength.toFixed(1)} cm (${handCat(a.handLength)})`, "hand"],
       ["Oblik", or(labelOf("shape")), "shape"],
       ["Bočni gumbi", or(labelOf("sideButtons")), "buttons"],
       ["Grip", or(labelOf("grip")), "grip"],
@@ -423,9 +423,9 @@
         <div class="hand-img">${handImg}</div>
         <div class="hand-controls">
           <div class="group">
-            <div class="glabel">Dužina šake</div>
+            <div class="glabel">Duljina dlana</div>
             <div class="bigval"><span id="hlVal">${a.handLength.toFixed(1)}</span> cm <span class="cat" id="hlCat">${handCat(a.handLength)}</span></div>
-            <input type="range" id="hl" min="13" max="24" step="0.1" value="${a.handLength}" aria-label="Dužina šake u cm">
+            <input type="range" id="hl" min="13" max="24" step="0.1" value="${a.handLength}" aria-label="Duljina dlana u cm">
             <div class="range-labels"><span>13 cm</span><span>24 cm</span></div>
           </div>
         </div>
